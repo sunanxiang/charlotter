@@ -31,7 +31,7 @@ func Completions(question string, msgChan chan string, errChan chan error) {
 		return
 	}
 
-	err = cache.GlobalCache.Add(question, resp.Choices[0].Message.Content, time.Minute*5)
+	err = cache.GlobalCache.Replace(question, resp.Choices[0].Message.Content, time.Minute*5)
 	if err != nil {
 		log.Printf("cache add error: %v", err)
 	}
